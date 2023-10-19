@@ -1,32 +1,43 @@
 package ru.pleshkova.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.pleshkova.models.Book;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class BookDAO {
-
+    private final JdbcTemplate jdbcTemplate;
+    @Autowired
+    public BookDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
     public List<Book> index(){
         // выгрузить все книги из БД
-        return new ArrayList<>();
+        return jdbcTemplate.query("SELECT * FROM book", new BeanPropertyRowMapper<>(Book.class));
     }
 
     public void delete(int id){
         //удалить книгу с указанным id
+        jdbcTemplate.update("DELETE FROM book WHERE id_book=?", id);
     }
 
     public Book show(int id){
         // вернуть книгу с id из БД
-        return new Book();
+        return jdbcTemplate.query("SELECT * FROM book WHERE id_book=?", new Object[]{id},
+                new BeanPropertyRowMapper<>(Book.class)).stream().findAny().orElse(null);
     }
 
     public void add(Book book){
         //добавить книгу в БД
+        jdbcTemplate.update("INSERT book (name, author, year) VALUES (?,?,?)", book.getName(), book.getAuthor(),
+                book.getYear());
     }
     public void update(int id, Book book){
+        jdbcTemplate.update("UPDATE book SET name=?, author=?, year=? WHERE id_book=?",
+                book.getName(), book.getAuthor(), book.getYear(), id);
         //изменить книгу в БД
     }
 

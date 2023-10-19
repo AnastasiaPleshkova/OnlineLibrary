@@ -1,5 +1,7 @@
 <html>
 <body>
-<h2>Hello World!</h2>
+<h2>Welcome in online library!</h2>
+<br/>
+<a href="/books">Show all books in library</a>
 </body>
 </html>
