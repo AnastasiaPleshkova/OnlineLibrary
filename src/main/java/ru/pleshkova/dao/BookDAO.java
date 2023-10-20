@@ -30,15 +30,22 @@ public class BookDAO {
                 new BookMapper()).stream().findAny().orElse(null);
     }
 
-    public void add(Book book){
+    public void add(Book book) {
         //добавить книгу в БД
         jdbcTemplate.update("INSERT book (name, author, year) VALUES (?,?,?)", book.getName(), book.getAuthor(),
                 book.getYear());
     }
-    public void update(int id, Book book){
+    public void update(int id, Book book) {
         jdbcTemplate.update("UPDATE book SET name=?, author=?, year=? WHERE id_book=?",
                 book.getName(), book.getAuthor(), book.getYear(), id);
         //изменить книгу в БД
     }
+
+    public List<Book> getListById(int id_person) {
+        // выгрузить все книги из БД
+        return jdbcTemplate.query("SELECT * FROM book WHERE id_person=?", new Object[]{id_person},new BookMapper());
+    }
+
+
 
 }

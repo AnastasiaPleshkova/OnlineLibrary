@@ -10,7 +10,16 @@
 <p th:text="'ФИО:' + ${person.getFio()}">Name</p>
 <p th:text="'Год рождения:' + ${person.getYear()}">Year</p>
 <br/>
-<p> Перечень книг которые, взял человек</p>
+<div th:if="${not books.isEmpty()}">
+    <p> Перечень книг которые, взял человек: </p>
+        <div th:each="book : ${books}">
+            <a th:href="@{/books/{id}(id=${book.getId_book()})}"
+               th:text="${book.getName() + ', ' + book.getAuthor() + ' ,' + book.getYear()}">People</a>
+            <br/>
+        </div>
+</div>
+
+<div th:if="${books.isEmpty()}" th:text="'Человек пока не взял ни одной книги'"></div>
 <br/>
 <button><a th:href="@{/people/{id}/edit(id=${person.getId_person()})}">Редактировать читателя</a></button>
 <br/>
