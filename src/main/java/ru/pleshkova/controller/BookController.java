@@ -1,11 +1,11 @@
 package ru.pleshkova.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.pleshkova.dao.BookDAO;
+import ru.pleshkova.dao.PersonDAO;
 import ru.pleshkova.models.Book;
 
 @Controller
@@ -13,9 +13,11 @@ import ru.pleshkova.models.Book;
 public class BookController {
 
     private final BookDAO bookDAO;
+    private final PersonDAO personDAO;
     @Autowired
-    public BookController(BookDAO bookDAO) {
-        this.bookDAO = bookDAO;
+    public BookController(BookDAO bookDAO, PersonDAO personDAO) {  //PersonDAO personDAO
+         this.bookDAO = bookDAO;
+        this.personDAO = personDAO;
     }
 
     @GetMapping()
@@ -34,6 +36,7 @@ public class BookController {
     public String createNewBookForm(@ModelAttribute("book") Book book) {
         return "book/new";
     }
+
     @GetMapping("/{id}/edit")
     public String editBookForm(@PathVariable("id") int id, Model model) {
         model.addAttribute("book",bookDAO.show(id));
@@ -42,7 +45,9 @@ public class BookController {
 
     @GetMapping("/{id}")
     public String getOneBook(Model model, @PathVariable("id") int id){
+//        Book book = ;
         model.addAttribute("book",bookDAO.show(id));
+        model.addAttribute("person", personDAO.get(bookDAO.show(id).getId_person()));
         return "book/show";
     }
 

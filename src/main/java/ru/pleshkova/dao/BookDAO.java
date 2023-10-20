@@ -16,7 +16,7 @@ public class BookDAO {
     }
     public List<Book> index(){
         // выгрузить все книги из БД
-        return jdbcTemplate.query("SELECT * FROM book", new BeanPropertyRowMapper<>(Book.class));
+        return jdbcTemplate.query("SELECT * FROM book", new BookMapper());
     }
 
     public void delete(int id){
@@ -27,7 +27,7 @@ public class BookDAO {
     public Book show(int id){
         // вернуть книгу с id из БД
         return jdbcTemplate.query("SELECT * FROM book WHERE id_book=?", new Object[]{id},
-                new BeanPropertyRowMapper<>(Book.class)).stream().findAny().orElse(null);
+                new BookMapper()).stream().findAny().orElse(null);
     }
 
     public void add(Book book){

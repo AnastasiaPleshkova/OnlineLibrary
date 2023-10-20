@@ -3,10 +3,11 @@
 <head>
     <title>All books</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<p> Перечень всех книг в библиотеке:</p>
+<h1> Перечень всех книг в библиотеке:</h1>
 
 <div th:each="book : ${books}">
     <a th:href="@{/books/{id}(id=${book.getId_book()})}"

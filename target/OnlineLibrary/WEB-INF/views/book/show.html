@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Show book</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
+<h1>Просмотр свойств книги.</h1>
 <p th:text="'ID книги:' + ${book.getId_book()}">Id</p>
 <p th:text="'Название книги:' + ${book.getName()}">Name</p>
 <p th:text="'Автор книги:' + ${book.getAuthor()}">Author</p>
 <p th:text="'Год издания книги:' + ${book.getYear()}">Year</p>
+<br/>
+<div th:if="${person==null}" th:text="'Эта книга свободна'"></div>
+<div th:if="${person!=null}" th:text="'Книгу забрал(а) ' + ${person.getFio()}"></div>
 <br/>
 <button><a th:href="@{/books/{id}/edit(id=${book.getId_book()})}">Редактировать книгу</a></button>
 <br/>

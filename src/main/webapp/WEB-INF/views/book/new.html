@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Create new book</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
+<h1>Окно создания новой книги</h1>
+<br/>
 <p>Чтобы создать новую книгу:</p>
 <form th:method="Post"
       th:action="@{/books}"
@@ -22,6 +25,9 @@
     <br/>
     <input type="submit" value="Создать"/>
 </form>
+<button>
+    <a href="/books">Отмена</a>
+</button>
 
 </body>
 </html>

@@ -1,0 +1,71 @@
+/* Общие стили */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 20px 20px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 36px;
+  color: #ff6600;
+  text-align: center;
+}
+
+p {
+  font-size: 18px;
+  color: #333333;
+}
+
+a {
+  font-size: 20px;
+  color: #333333;
+}
+
+div{
+  font-style: italic;
+  font-size: 20px;
+  color: #ff8800;
+}
+
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 24px;
+  color: #ffffff;
+  background-color: #8888;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+input {
+  background-color: #9999;
+  isplay: inline-block;
+  padding: 10px 20px;
+  font-size: 24px;
+  color: #ffffff;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.highlight {
+  color: #ff6600;
+  font-weight: bold;
+}
+
+.image {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+}
+
+.quote {
+  font-style: italic;
+  color: #666666;
+}

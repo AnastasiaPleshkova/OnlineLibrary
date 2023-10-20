@@ -1,6 +1,7 @@
 package ru.pleshkova.models;
 public class Book {
     private int id_book;
+    private Integer id_person;
     private String name;
     private String author;
     private int year;
@@ -36,5 +37,13 @@ public class Book {
     }
     public void setId_book(int id_book) {
         this.id_book = id_book;
+    }
+
+    public int getId_person() {
+        return id_person;
+    }
+
+    public void setId_person(int id_person) {
+        this.id_person = id_person;
     }
 }

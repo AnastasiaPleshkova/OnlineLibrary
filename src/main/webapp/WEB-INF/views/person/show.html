@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
 <p th:text="'ID читателя:' + ${person.getId_person()}">Id</p>
 <p th:text="'ФИО:' + ${person.getFio()}">Name</p>
 <p th:text="'Год рождения:' + ${person.getYear()}">Year</p>
+<br/>
+<p> Перечень книг которые, взял человек</p>
 <br/>
 <button><a th:href="@{/people/{id}/edit(id=${person.getId_person()})}">Редактировать читателя</a></button>
 <br/>
