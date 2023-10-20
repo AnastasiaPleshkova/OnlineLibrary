@@ -1,3 +1,9 @@
 ru\pleshkova\config\SpringConfig.class
-ru\pleshkova\controller\MainController.class
+ru\pleshkova\controller\PersonController.class
+ru\pleshkova\models\Book.class
 ru\pleshkova\config\MainDispatcher.class
+ru\pleshkova\controller\MainController.class
+ru\pleshkova\dao\BookDAO.class
+ru\pleshkova\controller\BookController.class
+ru\pleshkova\dao\PersonDAO.class
+ru\pleshkova\models\Person.class

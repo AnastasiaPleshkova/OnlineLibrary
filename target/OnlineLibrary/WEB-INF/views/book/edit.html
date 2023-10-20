@@ -1,31 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Edit book</title>
 </head>
 <body>
-<form th:method="Patch" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
-    <label for="name">Enter name:</label>
+<form th:method="Patch" th:action="@{/books/{id}(id=${book.getId_book()})}" th:object="${book}">
+    <label for="name">Измени название книги:</label>
     <input type="text" th:field="*{name}" id="name"/>
     <br/>
-    <label for="author">Enter author:</label>
+    <label for="author">Измени автора:</label>
     <input type="text" th:field="*{author}" id="author"/>
     <br/>
-    <label for="year">Enter year:</label>
+    <label for="year">Измени год книги:</label>
     <input type="text" th:field="*{year}" id="year"/>
     <br/>
-    <button>
-        <input type="submit" value="Update">
-    </button>
-
-    <br/>
-    <button>
-        <a href="/books">Cancel</a>
-    </button>
-
-
+    <input type="submit" value="Обновить">
 </form>
+<br/>
+<button>
+    <a href="/books">Отмена</a>
+</button>
 
 </body>
 </html>
