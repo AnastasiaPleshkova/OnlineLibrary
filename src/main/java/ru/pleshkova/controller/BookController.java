@@ -45,9 +45,9 @@ public class BookController {
 
     @GetMapping("/{id}")
     public String getOneBook(Model model, @PathVariable("id") int id){
-//        Book book = ;
         model.addAttribute("book",bookDAO.show(id));
         model.addAttribute("person", personDAO.get(bookDAO.show(id).getId_person()));
+        model.addAttribute("people", personDAO.index());
         return "book/show";
     }
 
@@ -60,6 +60,12 @@ public class BookController {
     @DeleteMapping("/{id}")
     public String deleteBook(@PathVariable("id") int id){
         bookDAO.delete(id);
+        return "redirect:/books";
+    }
+
+    @PatchMapping("/{id}/release")
+    public String releaseBookTaker(@PathVariable("id") int id){
+        bookDAO.release(id);
         return "redirect:/books";
     }
 }

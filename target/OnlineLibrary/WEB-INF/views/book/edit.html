@@ -16,6 +16,7 @@
     <br/>
     <label for="year">Измени год книги:</label>
     <input type="text" th:field="*{year}" id="year"/>
+    <input type=hidden th:field="*{id_person}" th:value="${book.getId_person()}"/>
     <br/>
     <input type="submit" value="Обновить">
 </form>

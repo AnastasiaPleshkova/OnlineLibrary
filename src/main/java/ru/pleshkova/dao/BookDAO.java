@@ -36,14 +36,19 @@ public class BookDAO {
                 book.getYear());
     }
     public void update(int id, Book book) {
-        jdbcTemplate.update("UPDATE book SET name=?, author=?, year=? WHERE id_book=?",
-                book.getName(), book.getAuthor(), book.getYear(), id);
+        jdbcTemplate.update("UPDATE book SET name=?, author=?, year=?, id_person=? WHERE id_book=?",
+                book.getName(), book.getAuthor(), book.getYear(), book.getId_person(), id);
         //изменить книгу в БД
     }
 
     public List<Book> getListById(int id_person) {
         // выгрузить все книги из БД
         return jdbcTemplate.query("SELECT * FROM book WHERE id_person=?", new Object[]{id_person},new BookMapper());
+    }
+
+    public void release(int id) {
+        jdbcTemplate.update("UPDATE book SET id_person=null WHERE id_book=?", id);
+        //изменить книгу в БД
     }
 
 
