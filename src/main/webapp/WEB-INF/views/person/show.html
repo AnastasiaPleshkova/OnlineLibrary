@@ -25,10 +25,12 @@
 <br/>
 <button><a th:href="@{/people/{id}/edit(id=${person.getId_person()})}">Редактировать читателя</a></button>
 <br/>
-<form th:method="Delete" th:action="@{/people/{id}(id=${person.getId_person()})}">
+<form th:if="${books.isEmpty()}" th:method="Delete" th:action="@{/people/{id}(id=${person.getId_person()})}">
     <br/>
     <input type="submit" value="Удалить читателя">
 </form>
+    <br/>
+    <div th:if="${not books.isEmpty()}" th:text="'Удалить человека можно только если он не задолжник'"></div>
 <br/>
 <button><a href="/people">Назад</a></button>
 </main>

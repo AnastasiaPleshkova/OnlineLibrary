@@ -64,7 +64,9 @@ public class PersonController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id) {
+    public String delete(@PathVariable("id") int id, @ModelAttribute("person") Person person, BindingResult result) {
+        if (result.hasErrors())
+            return "person/show";
         personDAO.delete(id);
         return "redirect:/people";
     }
