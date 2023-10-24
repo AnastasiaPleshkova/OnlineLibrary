@@ -9,9 +9,11 @@
 <form th:method="Patch" th:action="@{/people/{id}(id=${person.getId_person()})}" th:object="${person}">
     <label for="fio">Измени ФИО читателя:</label>
     <input type="text" th:field="*{fio}" id="fio"/>
+    <div style="color: darkred" th:if="${#fields.hasErrors('fio')}" th:errors="*{fio}"></div>
     <br/>
     <label for="year">Измени год рождения:</label>
     <input type="text" th:field="*{year}" id="year"/>
+    <div style="color: darkred" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></div>
     <br/>
     <input type="submit" value="Обновить">
 </form>
@@ -19,6 +21,8 @@
 <button>
     <a href="/people">Отмена</a>
 </button>
-
+<footer>
+    <p>&copy; 2023 OnlineLibrary</p>
+</footer>
 </body>
 </html>

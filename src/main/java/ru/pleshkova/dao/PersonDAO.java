@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import ru.pleshkova.models.Book;
 import ru.pleshkova.models.Person;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class PersonDAO {
@@ -30,6 +31,12 @@ public class PersonDAO {
         //возвращение человека по id
         return jdbcTemplate.query("SELECT * FROM person WHERE id_person=?",
                 new BeanPropertyRowMapper<>(Person.class), id).stream().findAny().orElse(null);
+    }
+
+    public Optional<Person> get(String fio) {
+        //возвращение человека по id
+        return jdbcTemplate.query("SELECT * FROM person WHERE fio=?",
+                new BeanPropertyRowMapper<>(Person.class), fio).stream().findAny();
     }
 
     public void delete(int id) {

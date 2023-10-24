@@ -14,12 +14,15 @@
       th:object="${book}">
     <label for="name">Введи название книги:</label>
     <input type="text" th:field="*{name}" id="name"/>
+    <div style="color: darkred" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name error</div>
     <br/>
     <label for="author">Введи автора книги:</label>
     <input type="text" th:field="*{author}" id="author"/>
+    <div style="color: darkred" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author error</div>
     <br/>
     <label for="year">Введи год книги:</label>
     <input type="text" th:field="*{year}" id="year"/>
+    <div style="color: darkred" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">year error</div>
     <br/>
     <br/>
     <br/>
@@ -28,6 +31,8 @@
 <button>
     <a href="/books">Отмена</a>
 </button>
-
+<footer>
+    <p>&copy; 2023 OnlineLibrary</p>
+</footer>
 </body>
 </html>

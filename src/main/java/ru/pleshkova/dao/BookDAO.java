@@ -36,8 +36,8 @@ public class BookDAO {
                 book.getYear());
     }
     public void update(int id, Book book) {
-        jdbcTemplate.update("UPDATE book SET name=?, author=?, year=?, id_person=? WHERE id_book=?",
-                book.getName(), book.getAuthor(), book.getYear(), book.getId_person(), id);
+        jdbcTemplate.update("UPDATE book SET name=?, author=?, year=? WHERE id_book=?",
+                book.getName(), book.getAuthor(), book.getYear(), id);
         //изменить книгу в БД
     }
 
@@ -48,7 +48,10 @@ public class BookDAO {
 
     public void release(int id) {
         jdbcTemplate.update("UPDATE book SET id_person=null WHERE id_book=?", id);
-        //изменить книгу в БД
+    }
+
+    public void take(int id_book, int id_person) {
+        jdbcTemplate.update("UPDATE book SET id_person=? WHERE id_book=?", id_person, id_book);
     }
 
 

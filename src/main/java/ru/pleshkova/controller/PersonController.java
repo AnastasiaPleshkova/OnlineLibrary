@@ -1,22 +1,25 @@
 package ru.pleshkova.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.pleshkova.dao.BookDAO;
 import ru.pleshkova.dao.PersonDAO;
 import ru.pleshkova.models.Person;
+import ru.pleshkova.util.PersonValidator;
 
 @Controller
 @RequestMapping("/people")
 public class PersonController {
     private final PersonDAO personDAO;
-//    private final BookDAO bookDAO;
+    private final PersonValidator personValidator;
+
     @Autowired
-    public PersonController(PersonDAO personDAO) {
+    public PersonController(PersonDAO personDAO, PersonValidator personValidator) {
         this.personDAO = personDAO;
-//        this.bookDAO = bookDAO;
+        this.personValidator = personValidator;
     }
     @GetMapping()
     public String index(Model model) {
@@ -25,7 +28,10 @@ public class PersonController {
     }
 
     @PostMapping()
-    public String newPerson(@ModelAttribute("person") Person person) {
+    public String newPerson(@ModelAttribute("person") @Valid Person person, BindingResult result) {
+        personValidator.validate(person, result);
+        if (result.hasErrors())
+            return "person/new";
         personDAO.add(person);
         return "redirect:/people";
     }
@@ -49,7 +55,10 @@ public class PersonController {
     }
 
     @PatchMapping("/{id}")
-    public String edit(@PathVariable("id") int id, @ModelAttribute("person") Person person) {
+    public String edit(@PathVariable("id") int id, @ModelAttribute("person") @Valid Person person, BindingResult result) {
+        personValidator.validate(person, result);
+        if (result.hasErrors())
+            return "person/edit";
         personDAO.update(id, person);
         return "redirect:/people";
     }

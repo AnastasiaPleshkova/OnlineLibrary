@@ -13,15 +13,12 @@
 <p th:text="'Год издания книги:' + ${book.getYear()}">Year</p>
 <br/>
 <div th:if="${person==null}" th:text="'Эта книга свободна'"></div>
-<form th:if="${person==null}" th:method="PATCH" th:action="@{/books/{id}(id=${book.getId_book()})}" th:object="${book}">
+<form th:if="${person==null}" th:method="PATCH" th:action="@{/books/{id}/take(id=${book.getId_book()})}" th:object="${book}">
     <label for="bookTaker">Выберите кому назначить книгу:</label>
     <select id="bookTaker"  th:field="*{id_person}">
         <option th:each="person : ${people}" th:value="${person.getId_person()}" th:text="${person.getFio()}">
         </option>
     </select>
-    <input type=hidden th:field="*{name}">
-    <input type=hidden th:field="*{author}">
-    <input type=hidden th:field="*{year}">
     <input type="submit" value="Назначить">
 </form>
 <div th:if="${person!=null}" th:text="'Книгу забрал(а) ' + ${person.getFio()}"> </div>
@@ -38,5 +35,8 @@
 </form>
 <br/>
 <button><a href="/books">Назад</a></button>
+<footer>
+    <p>&copy; 2023 OnlineLibrary</p>
+</footer>
 </body>
 </html>
